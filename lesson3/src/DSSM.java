@@ -9,7 +9,8 @@ public class DSSM extends Sach implements Controller {
     Controller2 controller2 = new Controller2();
     Scanner sc = new Scanner(System.in);
     private ArrayList<Sach> dssm;
-    public DSSM(){
+
+    public DSSM() {
         this.dssm = new ArrayList<>();
     }
 
@@ -22,21 +23,24 @@ public class DSSM extends Sach implements Controller {
         System.out.println("Nhap so luong sach muon nhap: ");
         int t = sc.nextInt();
         System.out.println("Nhap danh sach sach");
-        while(t-->0) {
+        while (t-- > 0) {
             sach.nhapttS();
             dssm.add(sach);
         }
     }
-    public void xuatDS(){
-        for(Sach sach: dssm){
+
+    public void xuatDS() {
+        for (Sach sach : dssm) {
             System.out.println(sach.toString());
             dssm.add(sach);
         }
     }
+
     @Override
     public <T> void ghiFile(List<T> list, String filename) {
-        controller2.ghiFile(dssm,"SM.INP");
+        controller2.ghiFile(dssm, "SM.INP");
     }
+
     @Override
     public <T> void docFile(String filename) {
         controller2.docFile("SM.INP");

@@ -1,7 +1,4 @@
-import javax.jnlp.ClipboardService;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -19,13 +16,11 @@ public class Menu {
         switch (chon){
             case 1:
                 DSBD dsbd = new DSBD();
-                Controller2 controller2 = new Controller2();
                 dsbd.nhapDS();
                 dsbd.xuatDS();
                 break;
             case 2:
                 DSSM dssm = new DSSM();
-                Controller2 controller21 = new Controller2();
                 dssm.nhapDS();
                 dssm.xuatDS();
                 break;

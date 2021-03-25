@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class BanDoc {
-    private int idbanDoc;
-    private String hoTen;
-    private String diaChi;
-    private String sDT;
-    private int loaiBD;
+public class BanDoc { // Reader
+    private int idbanDoc; // id
+    private String hoTen; // fullName
+    private String diaChi; // address
+    private String sDT; // phoneNumber
+    private int loaiBD; // type
 
     public BanDoc() {
     }
@@ -56,7 +56,8 @@ public class BanDoc {
     public void setLoaiBD(int loaiBD) {
         this.loaiBD = loaiBD;
     }
-    public void nhapTTBD(){
+
+    public void nhapTTBD() {
         System.out.println("nhap id :");
         this.idbanDoc = new Scanner(System.in).nextInt();
         System.out.println("nhap hoTen :");
@@ -70,15 +71,18 @@ public class BanDoc {
         System.out.println("2.Hoc Vien Cao Hoc");
         System.out.println("3.Giao Vien");
         int chon = new Scanner(System.in).nextInt();
-        switch (chon){
-            case 1: System.out.println("Sinh Vien");
+        switch (chon) {
+            case 1:
+                System.out.println("Sinh Vien");
                 break;
-            case 2: System.out.println("Hoc Vien Cao Hoc");
+            case 2:
+                System.out.println("Hoc Vien Cao Hoc");
                 break;
-            case 3: System.out.println("Giao Vien");
+            case 3:
+                System.out.println("Giao Vien");
                 break;
         }
-        this.loaiBD = chon ;
+        this.loaiBD = chon;
     }
 
     @Override
