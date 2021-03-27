@@ -26,7 +26,7 @@ public class MainMenu {
                     borrowBook();
                     break;
                 case 4:
-                    // ..
+                    sortBorrowList();
                     break;
                 case 5:
                     //...
@@ -38,7 +38,6 @@ public class MainMenu {
         } while (true);
 
     }
-
 
     private static int functionChoice() {
         System.out.println("---------- PHẦN MỀM QUẢN LÝ THƯ VIỆN ---------");
@@ -91,6 +90,34 @@ public class MainMenu {
             borrowBook.setBooks(books);
         }
 
+    }
+
+    private static void sortBorrowList() {
+        do {
+            int sortChoice;
+            System.out.println("---------- SẮP XẾP DANH SÁCH MƯỢN SÁCH ---------");
+            System.out.println("1. Theo tên.");
+            System.out.println("2. Theo số lượng cuốn sách được mượn (giảm dần).");
+            System.out.println("3. Thoát chức năng sắp xếp.");
+            System.out.print("Xin mời chọn chức năng: ");
+            do {
+                sortChoice = new Scanner(System.in).nextInt();
+                if (sortChoice >= 1 && sortChoice <= 3) {
+                    break;
+                }
+                System.out.print("Chức năng chọn không hợp lệ, vui lòng chọn lại: ");
+            } while (true);
+            switch (sortChoice) {
+                case 1:
+                    // ...
+                    break;
+                case 2:
+                    // ....
+                    break;
+                case 3:
+                    return;
+            }
+        } while (true);
     }
 
 }

@@ -9,11 +9,6 @@ public class MainMenu {
     public static void menu(){
         do {
             int FuntionChoice = FuntionChoice();
-            System.out.println("Chọn thao tác");
-            System.out.println("1.Creat new reader");
-            System.out.println("2.Creat new book");
-            System.out.println("3.BorowBook");
-            FuntionChoice = new Scanner(System.in).nextInt();
             switch (FuntionChoice){
                 case 1:
                     CreatNewReader();
@@ -80,12 +75,27 @@ public class MainMenu {
         }
     }
 
+    /**
+     * 1. Nhập số lượng người đọc muốn mượn sách (n thằng)
+     * 2. For từ 0 đến n-1 (tưởng tượng n bạn đọc đang xếp hàng, và mình đang xử lý từng bạn đọc 1 lần)
+     *      *trong for là bạn đọc thứ i ==> cho bạn đọc thứ i mượn sách*
+     *      2.1 Nhập số lượng đầu sách bạn đọc thứ i muốn mượn (gọi là k), nếu nhập quá 5 thì bắt nhập lại
+     *      2.2 for từ 0 tới k-1 (hỏi xem nó muốn mượn những quyển gì)
+     *          2.2.1 nhập id của đầu sách thứ j
+     *          2.2.2 tìm kiếm trong "AllBook" xem có id mà nó vừa nhập không???
+     *                  ==> không ==> in ra: id sách không tồn tại, yêu cầu nhập lại
+     *          2.2.3 hỏi xem muốn mượn bao nhiêu quyển của đầu sách thứ j này
+     *              > 3 ==> hỏi lại
+     *              <= 3 --> ok, cho mượn (tức là set vào mảng book[] mà nó muốn mượn)
+     *      -----đủ k quyển thì thoát khỏi for
+     * ------đủ n người mượn, thì dừng chức năng.
+     *
+     */
     public static void borrowBook(){
 
         System.out.println("Nhập số lượng Reders muốn mượn sách: ");
         int n;
         do {
-            System.out.println("Nhập số lượng Reader: ");
             n = new Scanner(System.in).nextInt();
             if(n>MainMenu.AllReader){
                 System.out.println("nhap lại! số lượng Reader nhỏ hơn tổng số Reader");
@@ -121,7 +131,7 @@ public class MainMenu {
                 System.out.println("Nhập id sách muốn mượn: ");
                 Book book = books[j];
                 books[j].setID(new Scanner(System.in).nextInt());
-                
+
             }
         }
     }

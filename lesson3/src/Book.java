@@ -150,7 +150,7 @@ public class Book {
                     this.setMajor(Book.INFORMATION_TECHNOLOGY);
                     isvalue=true;
                     break;
-                case 5:
+                default:
                     System.out.println("Chon tu 1 den 4. hay chon lai!");
                     isvalue=false;
                     break;
