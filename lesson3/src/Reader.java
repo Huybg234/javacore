@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ReaDer {
+public class Reader {
     private int ID;
     private String Name;
     private String Address;
@@ -13,10 +13,10 @@ public class ReaDer {
 
     private static int AUTO_ID = 10000;
 
-    public ReaDer() {
+    public Reader() {
     }
 
-    public ReaDer(int ID, String name, String address, String phoneNumber, String readerType) {
+    public Reader(int ID, String name, String address, String phoneNumber, String readerType) {
         this.ID = ID;
         this.Name = name;
         this.Address = address;
@@ -88,7 +88,7 @@ public class ReaDer {
     }
 
     public void nhapTTBD(){
-        this.setID(ReaDer.AUTO_ID);
+        this.setID(Reader.AUTO_ID);
 
         System.out.println("nhap hoTen :");
         this.Name = new Scanner(System.in).nextLine();
@@ -106,15 +106,15 @@ public class ReaDer {
             int choice = new Scanner(System.in).nextInt();
             switch(choice){
                 case 1:
-                    this.setReaderType(ReaDer.STUDENT);
+                    this.setReaderType(Reader.STUDENT);
                     isValue = true;
                     break;
                 case 2:
-                    this.setReaderType(ReaDer.HIGHTSTUDENT);
+                    this.setReaderType(Reader.HIGHTSTUDENT);
                     isValue = true;
                     break;
                 case 3:
-                    this.setReaderType(ReaDer.TEACHER);
+                    this.setReaderType(Reader.TEACHER);
                     isValue = true;
                     break;
                 default:
@@ -123,6 +123,6 @@ public class ReaDer {
                     break;
             }
         } while (!isValue);
-        ReaDer.AUTO_ID++;
+        Reader.AUTO_ID++;
     }
 }

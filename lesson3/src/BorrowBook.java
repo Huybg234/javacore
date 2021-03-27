@@ -1,15 +1,15 @@
 public class BorrowBook {
-    private ReaDer reaDer;
+    private Reader reaDer;
     private Book[] books;
 
     public BorrowBook() {
     }
 
-    public ReaDer getReaDer() {
+    public Reader getReaDer() {
         return reaDer;
     }
 
-    public void setReaDer(ReaDer reaDer) {
+    public void setReaDer(Reader reaDer) {
         this.reaDer = reaDer;
     }
 

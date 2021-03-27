@@ -55,14 +55,14 @@ public class MainMenu {
     public static void CreatNewReader(){
         System.out.println("Nhập tổng số Reader: ");
         MainMenu.AllReader = new Scanner(System.in).nextInt();
-        ReaDer[] reaDers = new ReaDer[MainMenu.AllReader];
-        for(int i=0;i < reaDers.length;i++ ){
-            ReaDer reaDer = new ReaDer();
+        Reader[] readers = new Reader[MainMenu.AllReader];
+        for(int i = 0; i < readers.length; i++ ){
+            Reader reaDer = new Reader();
             reaDer.nhapTTBD();
-            reaDers[i]= reaDer;
+            readers[i]= reaDer;
         }
-        for(int i=0;i<reaDers.length;i++){
-            System.out.println(reaDers[i].toString());
+        for(int i = 0; i< readers.length; i++){
+            System.out.println(readers[i].toString());
         }
     }
 
@@ -91,7 +91,7 @@ public class MainMenu {
                 System.out.println("nhap lại! số lượng Reader nhỏ hơn tổng số Reader");
             }
         }while (n>MainMenu.AllReader);
-        ReaDer[] reaDers = new ReaDer[n];
+        Reader[] readers = new Reader[n];
 
         System.out.println("Nhập số lượng Books được phép mượn: ");
         int m;
@@ -104,8 +104,8 @@ public class MainMenu {
         }while (m>MainMenu.AllBook);
         Book[] books = new Book[m];
 
-        for (int i =0; i < reaDers.length;i++){
-            ReaDer reaDer = reaDers[i];
+        for (int i = 0; i < readers.length; i++){
+            Reader reaDer = readers[i];
             BorrowBook borrowBook = new BorrowBook();
             borrowBook.setReaDer(reaDer);
             System.out.println("Nhập số lượng sách Readers muốn mượn: ");
