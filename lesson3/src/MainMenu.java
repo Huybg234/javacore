@@ -1,19 +1,18 @@
 import java.util.Scanner;
 
 public class MainMenu {
-    private static ReaDer[] reaDers = new ReaDer[2];
-    private static Book[] books = new Book[2];
     public static void main(String[] args) {
         menu();
     }
-
+    private static int AllReader;
+    private static int AllBook;
     public static void menu(){
         do {
             int FuntionChoice = FuntionChoice();
-            System.out.println("Chon thao tac");
+            System.out.println("Chọn thao tác");
             System.out.println("1.Creat new reader");
             System.out.println("2.Creat new book");
-            System.out.println("7.Exit");
+            System.out.println("3.BorowBook");
             FuntionChoice = new Scanner(System.in).nextInt();
             switch (FuntionChoice){
                 case 1:
@@ -22,8 +21,9 @@ public class MainMenu {
                 case 2:
                     CreatNewBook();
                     break;
-                case 7:
-                    System.exit(0);
+                case 3:
+                    borrowBook();
+                    break;
             }
         }while(true);
     }
@@ -41,8 +41,11 @@ public class MainMenu {
         int FuntionChoice;
         do {
             FuntionChoice = new Scanner(System.in).nextInt();
-            if(FuntionChoice >= 1 && FuntionChoice <=7 ){
+            if(FuntionChoice >= 1 && FuntionChoice <=6 ){
                 break;
+            }
+            if(FuntionChoice ==7){
+                System.exit(0);
             }
             System.out.println("Chon lai");
         }while(true);
@@ -50,6 +53,9 @@ public class MainMenu {
     }
 
     public static void CreatNewReader(){
+        System.out.println("Nhập tổng số Reader: ");
+        MainMenu.AllReader = new Scanner(System.in).nextInt();
+        ReaDer[] reaDers = new ReaDer[MainMenu.AllReader];
         for(int i=0;i < reaDers.length;i++ ){
             ReaDer reaDer = new ReaDer();
             reaDer.nhapTTBD();
@@ -61,6 +67,9 @@ public class MainMenu {
     }
 
     public static void CreatNewBook(){
+        System.out.println("Nhập tổng số Book: ");
+        MainMenu.AllBook = new Scanner(System.in).nextInt();
+        Book[] books = new Book[MainMenu.AllBook];
         for(int i=0; i<books.length;i++ ){
             Book book = new Book();
             book.nhapTTS();
@@ -68,6 +77,52 @@ public class MainMenu {
         }
         for(int i=0; i<books.length;i++){
             System.out.println(books[i].toString());
+        }
+    }
+
+    public static void borrowBook(){
+
+        System.out.println("Nhập số lượng Reders muốn mượn sách: ");
+        int n;
+        do {
+            System.out.println("Nhập số lượng Reader: ");
+            n = new Scanner(System.in).nextInt();
+            if(n>MainMenu.AllReader){
+                System.out.println("nhap lại! số lượng Reader nhỏ hơn tổng số Reader");
+            }
+        }while (n>MainMenu.AllReader);
+        ReaDer[] reaDers = new ReaDer[n];
+
+        System.out.println("Nhập số lượng Books được phép mượn: ");
+        int m;
+        do {
+            System.out.println("Nhập số lượng Book: ");
+            m = new Scanner(System.in).nextInt();
+            if(m>MainMenu.AllBook){
+                System.out.println("nhap lai số lượng Book nhỏ hơn tổng số Book");
+            }
+        }while (m>MainMenu.AllBook);
+        Book[] books = new Book[m];
+
+        for (int i =0; i < reaDers.length;i++){
+            ReaDer reaDer = reaDers[i];
+            BorrowBook borrowBook = new BorrowBook();
+            borrowBook.setReaDer(reaDer);
+            System.out.println("Nhập số lượng sách Readers muốn mượn: ");
+            int x;
+            do {
+                System.out.println("Nhập số lượng Book muốn mượn: ");
+                x = new Scanner(System.in).nextInt();
+                if(x>m){
+                    System.out.println("nhap lai! số lượng Book muốn mượn nhỏ hơn số Book được phép mượn");
+                }
+            }while (x>m);
+            for(int j=0; j<x; j++){
+                System.out.println("Nhập id sách muốn mượn: ");
+                Book book = books[j];
+                books[j].setID(new Scanner(System.in).nextInt());
+                
+            }
         }
     }
 }

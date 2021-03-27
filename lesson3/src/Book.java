@@ -136,18 +136,23 @@ public class Book {
             switch (choice){
                 case 1:
                     this.setMajor(Book.SCIENCE);
+                    isvalue=true;
                     break;
                 case 2:
                     this.setMajor(Book.LITERARY_ART);
+                    isvalue=true;
                     break;
                 case 3:
                     this.setMajor(Book.TELECOMMUNICATION);
+                    isvalue=true;
                     break;
                 case 4:
                     this.setMajor(Book.INFORMATION_TECHNOLOGY);
+                    isvalue=true;
                     break;
                 case 5:
                     System.out.println("Chon tu 1 den 4. hay chon lai!");
+                    isvalue=false;
                     break;
             }
         }
