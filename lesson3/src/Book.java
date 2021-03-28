@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Book {
-    private static String SCIENCE ="Khoa học tự nhiên";
-    private static String LITERARY_ART = "Văn học nghệ thuật";
-    private static String TELECOMMUNICATION = "Điện tử viễn thông";
-    private static String INFORMATION_TECHNOLOGY = "Công nghệ thông tin";
+    public static String SCIENCE ="Khoa học tự nhiên";
+    public static String LITERARY_ART = "Văn học nghệ thuật";
+    public static String TELECOMMUNICATION = "Điện tử viễn thông";
+    public static String INFORMATION_TECHNOLOGY = "Công nghệ thông tin";
 
     private static int AUTO_IDBOOK = 10000;
 
