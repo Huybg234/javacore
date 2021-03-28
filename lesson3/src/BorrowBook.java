@@ -1,16 +1,23 @@
+import java.util.Arrays;
+
 public class BorrowBook {
-    private Reader reaDer;
+    private Reader reader;
     private Book[] books;
 
     public BorrowBook() {
     }
 
-    public Reader getReaDer() {
-        return reaDer;
+    public BorrowBook(Reader reader, Book[] books) {
+        this.reader = reader;
+        this.books = books;
     }
 
-    public void setReaDer(Reader reaDer) {
-        this.reaDer = reaDer;
+    public Reader getReader() {
+        return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
     }
 
     public Book[] getBooks() {
@@ -19,5 +26,13 @@ public class BorrowBook {
 
     public void setBooks(Book[] books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "BorrowBook{" +
+                "reaDer=" + reader +
+                ", books=" + Arrays.toString(books) +
+                '}';
     }
 }

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Book {
-    public static String SCIENCE ="Khoa học tự nhiên";
+    public static String SCIENCE = "Khoa học tự nhiên";
     public static String LITERARY_ART = "Văn học nghệ thuật";
     public static String TELECOMMUNICATION = "Điện tử viễn thông";
     public static String INFORMATION_TECHNOLOGY = "Công nghệ thông tin";
@@ -116,43 +116,49 @@ public class Book {
                 '}';
     }
 
-    public void nhapTTS(){
+    public void nhapTTS() {
         this.setID(Book.AUTO_IDBOOK);
 
         System.out.println("Nhap ten sach: ");
         this.setName(new Scanner(System.in).nextLine());
+
         System.out.println("Nhap ten tac gia: ");
         this.setAuthor(new Scanner(System.in).nextLine());
+
         System.out.println("Nhap nam xuat ban: ");
         this.setYear(new Scanner(System.in).nextInt());
+        // nhập năm tương lai thì sao???
+        // nhập chữ thì sao
+
         System.out.println("Chon chuyen nganh: ");
         System.out.println("1.Khoa hoc tu hien");
         System.out.println("2.Van hoc nghe thuat");
         System.out.println("3.Dien tu vien thong");
         System.out.println("4.Cong nghe thong tin");
         boolean isvalue = true;
-        do{
+        do {
             int choice = new Scanner(System.in).nextInt();
-            switch (choice){
+            // nhập chữ thì sao
+            switch (choice) {
                 case 1:
                     this.setMajor(Book.SCIENCE);
-                    isvalue=true;
+                    isvalue = true;
                     break;
                 case 2:
                     this.setMajor(Book.LITERARY_ART);
-                    isvalue=true;
+                    isvalue = true;
                     break;
                 case 3:
                     this.setMajor(Book.TELECOMMUNICATION);
-                    isvalue=true;
+                    isvalue = true;
                     break;
                 case 4:
                     this.setMajor(Book.INFORMATION_TECHNOLOGY);
-                    isvalue=true;
+                    isvalue = true;
                     break;
                 default:
                     System.out.println("Chon tu 1 den 4. hay chon lai!");
-                    isvalue=false;
+                    isvalue = false;
                     break;
             }
         }

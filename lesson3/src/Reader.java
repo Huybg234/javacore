@@ -87,24 +87,28 @@ public class Reader {
                 '}';
     }
 
-    public void nhapTTBD(){
+    public void nhapTTBD() {
         this.setID(Reader.AUTO_ID);
 
         System.out.println("nhap hoTen :");
         this.Name = new Scanner(System.in).nextLine();
+
         System.out.println("nhap diaChi :");
         this.Address = new Scanner(System.in).nextLine();
+
         System.out.println("nhap sDT :");
         this.PhoneNumber = new Scanner(System.in).nextLine();
+
         System.out.println("Chon loaiBD :");
         System.out.println("1.Sinh Vien");
         System.out.println("2.Hoc Vien Cao Hoc");
         System.out.println("3.Giao Vien");
 
         boolean isValue = true;
-        do{
+        do {
             int choice = new Scanner(System.in).nextInt();
-            switch(choice){
+            // nhập chữ thì sao
+            switch (choice) {
                 case 1:
                     this.setReaderType(Reader.STUDENT);
                     isValue = true;
