@@ -170,6 +170,8 @@ public class MainMenu {
                     k = new Scanner(System.in).nextInt();
                     checked = true;
                 } catch (Exception e) {
+                    System.out.print("Số lượng phải là một số không phải kí tự khác, vui lòng nhập lại: ");// <-------------------------------------------------------
+                    continue;
                 }
                 if (k <= 0 || k > 5 || k > readers.length) {
                     System.out.println("nhập lại! số lượng đầu sách lớn hơn 0, nhỏ hơn 5 và tổng sách,  không có chữ:  ");
