@@ -1,6 +1,3 @@
-import com.sun.org.apache.bcel.internal.generic.SWAP;
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -174,7 +171,7 @@ public class MainMenu {
                     checked = true;
                 } catch (Exception e) {
                 }
-                if (k <= 0 || k > 5 || k> readers.length) {
+                if (k <= 0 || k > 5 || k > readers.length) {
                     System.out.println("nhập lại! số lượng đầu sách lớn hơn 0, nhỏ hơn 5 và tổng sách,  không có chữ:  ");
                     checked = false;
                 }
@@ -184,37 +181,40 @@ public class MainMenu {
             } while (!checked);
 
             Book[] bookList = new Book[k];
+            int[] quantityList = new int[k];
             for (int j = 0; j <= k - 1; j++) {
                 System.out.println("Nhập id của đầu sách thứ " + (j + 1) + " mà bạn " + readers[i].getName() + " muốn mượn: ");
                 int tempId;
                 do {
                     tempId = new Scanner(System.in).nextInt();
                     Book book = searchBook(tempId);
+                    int m = 0;
                     if (book != null) {
                         System.out.print("Nhập số lượng cuốn bạn muốn mượn của sách " + book.getName() + ": ");
                         do {
                             try {
-                                k = new Scanner(System.in).nextInt();
+                                m = new Scanner(System.in).nextInt();
                                 checked = true;
                             } catch (Exception e) {
                             }
-                            if (k > 3 || k <= 0) {
+                            if (m > 3 || m <= 0) {
                                 System.out.println("Số lượng sách được cho phép mượn của một đầu sách lớn hơn 0, " +
                                         "không vượt quá 3 và không có chữ! nhập lại: ");
-                                checked=false;
+                                checked = false;
                             }
                             // số âm thì sao????
                             // nhập chữ thì sao????
                             //done
                         } while (!checked);
                         bookList[j] = book;
+                        quantityList[j] = m;
                         break;
                     }
                     System.out.print("Không có sách nào trong thư viện có ID vừa nhập, vui lòng nhập lại: ");
                 } while (true);
             }
 
-            BorrowBook borrowBook = new BorrowBook(readers[i], bookList);
+            BorrowBook borrowBook = new BorrowBook(readers[i], bookList, quantityList);
             borrowBooks[i] = borrowBook;
         }
 
@@ -278,11 +278,11 @@ public class MainMenu {
             System.out.println("Bạn cần nhập danh sách cho mượn trước khi sắp xếp!");
             return;
         }
-        String n= "" ;
+        String n = "";
         for (int i = 0; i < borrowBooks.length; i++) {
             for (int j = 0; j < i - 1; j++) {
-                if (borrowBooks[i].getReader().getName().compareTo(borrowBooks[j].getReader().getName())>0){
-
+                if (borrowBooks[i].getReader().getName().compareTo(borrowBooks[j].getReader().getName()) > 0) {
+                    // TODO -- làm nốt
                 }
             }
         }
@@ -295,9 +295,26 @@ public class MainMenu {
             return;
         }
 
+        // tính tổng số lượng sách từng thằng mượn
         for (int i = 0; i < borrowBooks.length; i++) {
-            for (int j = 0; j < i - 1; j++) {
+            BorrowBook borrowBook = borrowBooks[i];
+            Book[] books = borrowBook.getBooks();
+            int[] quantity = borrowBook.getQuantity();
+            int tempTotal = 0;
+            for (int j = 0; j < books.length; j++) {
+                tempTotal += quantity[i];
+            }
+            borrowBook.setTotalBook(tempTotal);
+        }
 
+        // sắp xếp nổi bọt
+        for (int i = 0; i < borrowBooks.length; i++) {
+            for (int j = i - 1; j < borrowBooks.length; j++) {
+                if (borrowBooks[i].getTotalBook() >= borrowBooks[j].getTotalBook()) {
+                    BorrowBook temp = borrowBooks[i];
+                    borrowBooks[i] = borrowBooks[j];
+                    borrowBooks[j] = temp;
+                }
             }
         }
         System.out.println(borrowBooks);
