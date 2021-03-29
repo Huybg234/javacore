@@ -7,9 +7,9 @@ public class Reader {
     private String PhoneNumber;
     private String ReaderType;
 
-    private final static String STUDENT = "Sinh Vien";
-    private final static String HIGHTSTUDENT = "Hoc Vien Cao Hoc";
-    private final static String TEACHER = "Giao Vien";
+    private final static String STUDENT = "Sinh viên";
+    private final static String HIGHTSTUDENT = "Học viên cao học";
+    private final static String TEACHER = "Giáo Viên";
 
     private static int AUTO_ID = 10000;
 
@@ -88,26 +88,30 @@ public class Reader {
     }
 
     public void nhapTTBD() {
-        this.setID(Reader.AUTO_ID);
 
-        System.out.println("nhap hoTen :");
+        this.setID(Reader.AUTO_ID);
+        System.out.println("Nhập họ tên bạn đọc : ");
         this.Name = new Scanner(System.in).nextLine();
 
-        System.out.println("nhap diaChi :");
+        System.out.println("Nhập địa chỉ bạn đọc : ");
         this.Address = new Scanner(System.in).nextLine();
 
-        System.out.println("nhap sDT :");
+        System.out.println("Nhập số điện thoại bạn đọc : ");
         this.PhoneNumber = new Scanner(System.in).nextLine();
 
-        System.out.println("Chon loaiBD :");
-        System.out.println("1.Sinh Vien");
-        System.out.println("2.Hoc Vien Cao Hoc");
-        System.out.println("3.Giao Vien");
+        System.out.println("Chon loại bạn đọc: ");
+        System.out.println("1.Sinh Viên");
+        System.out.println("2.Học viên cao học");
+        System.out.println("3.Giáo Viên");
 
         boolean isValue = true;
         do {
-            int choice = new Scanner(System.in).nextInt();
-            // nhập chữ thì sao
+            int choice = 0;
+            try {
+                choice= new Scanner(System.in).nextInt();
+                isValue=true;
+            }catch (Exception e){
+            }
             switch (choice) {
                 case 1:
                     this.setReaderType(Reader.STUDENT);
@@ -123,7 +127,7 @@ public class Reader {
                     break;
                 default:
                     isValue = false;
-                    System.out.println("Nhap sai. Hay nhap tu 1 den 3");
+                    System.out.println("Nhập sai! hãy nhập từ 1 đến 3");
                     break;
             }
         } while (!isValue);

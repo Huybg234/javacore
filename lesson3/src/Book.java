@@ -119,26 +119,42 @@ public class Book {
     public void nhapTTS() {
         this.setID(Book.AUTO_IDBOOK);
 
-        System.out.println("Nhap ten sach: ");
+        System.out.println("Nhập tên sách: ");
         this.setName(new Scanner(System.in).nextLine());
 
-        System.out.println("Nhap ten tac gia: ");
+        System.out.println("Nhập tên tác giả: ");
         this.setAuthor(new Scanner(System.in).nextLine());
 
-        System.out.println("Nhap nam xuat ban: ");
-        this.setYear(new Scanner(System.in).nextInt());
-        // nhập năm tương lai thì sao???
-        // nhập chữ thì sao
+        System.out.println("Nhập năm xuất bản: ");
+        boolean checked = true;
+        do {
+            this.Year =0;
+            try {
+                this.Year = new Scanner(System.in).nextInt();
+                checked = true;
+            }catch (Exception e){
+            }
+            if(this.Year<=0 || this.Year > 2021){
+                System.out.print("Năm không thể âm, lớn hơn 2021 hoặc có chữ! Nhập lại: ");
+                checked=false;
+            }
+        }while (!checked);
 
-        System.out.println("Chon chuyen nganh: ");
-        System.out.println("1.Khoa hoc tu hien");
-        System.out.println("2.Van hoc nghe thuat");
-        System.out.println("3.Dien tu vien thong");
-        System.out.println("4.Cong nghe thong tin");
+        System.out.println("Chọn chuyên ngành: ");
+        System.out.println("1.Khoa học tự nhiên");
+        System.out.println("2.Văn học nghệ thuật");
+        System.out.println("3.Điện tử viễn thông");
+        System.out.println("4.Công nghệ thông tin");
         boolean isvalue = true;
         do {
-            int choice = new Scanner(System.in).nextInt();
+            int choice = 0;
+            try {
+                choice= new Scanner(System.in).nextInt();
+                isvalue=true;
+            }catch (Exception e){
+            }
             // nhập chữ thì sao
+            //done
             switch (choice) {
                 case 1:
                     this.setMajor(Book.SCIENCE);
@@ -157,7 +173,7 @@ public class Book {
                     isvalue = true;
                     break;
                 default:
-                    System.out.println("Chon tu 1 den 4. hay chon lai!");
+                    System.out.println("Chọn từ 1 đến 4! Hãy chọn lại: ");
                     isvalue = false;
                     break;
             }
