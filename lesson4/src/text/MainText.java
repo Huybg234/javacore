@@ -2,6 +2,7 @@ package text;
 
 import java.io.*;
 import java.util.Scanner;
+
 /*
 đọc dùng while
 ghi dùng for
@@ -17,16 +18,15 @@ public class MainText {
     }
 
     private static void PrintWrite_TC() {
-        try (PrintWriter printWriter = new PrintWriter(new File("demoWriter.txt"))) {
+        try (PrintWriter printWriter = new PrintWriter("demoWriter.txt")) {
             printWriter.println("you are so beautiful");
-            printWriter.println("So I love you");
-            printWriter.println("Will you marry me");
+            printWriter.print(2);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    private static void Scanner_TC(){
+    private static void Scanner_TC() {
         try (Scanner scanner = new Scanner(new File("demoWriter.txt"))) {
             while (scanner.hasNext()) {
                 System.out.println(scanner.nextLine());
@@ -36,7 +36,7 @@ public class MainText {
         }
     }
 
-    private static void BufferWriter_TC(){
+    private static void BufferWriter_TC() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("demoBufferWriter.txt"))) {
             bufferedWriter.write("Nam Quốc sơn hà Nam Đế cư");
             bufferedWriter.newLine();
@@ -46,11 +46,11 @@ public class MainText {
         }
     }
 
-    private static void BufferReader_TC(){
+    private static void BufferReader_TC() {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("demoBufferWriter.txt"))) {
-            while (true){
+            while (true) {
                 String read = bufferedReader.readLine();
-                if(read==null){
+                if (read == null) {
                     break;
                 }
                 System.out.println(read);
@@ -62,7 +62,7 @@ public class MainText {
         }
     }
 
-    private static void OutputStreamWriter_TC(){
+    private static void OutputStreamWriter_TC() {
         try (OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream("demoOutputSteamWriter.txt"))) {
             outputStreamWriter.write("The King\n");
             outputStreamWriter.write("the Queen");
@@ -73,13 +73,11 @@ public class MainText {
         }
     }
 
-    private static void InputStreamReader_TC(){
+    private static void InputStreamReader_TC() {
         try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream("demoOutputSteamWriter.txt"))) {
             char[] array = new char[100];
             inputStreamReader.read(array);
             System.out.println(array);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
