@@ -1,24 +1,26 @@
+package codeByArrayList;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMenu {
+    private static ArrayList<Reader> readers = new ArrayList<>();
+    private static ArrayList<Book> books = new ArrayList<>();
+    private static ArrayList<BorrowBook> borrowBooks = new ArrayList<>();
 
     public static void main(String[] args) {
         menu();
     }
-
-    private static Reader[] readers;
-    private static Book[] books;
-    private static BorrowBook[] borrowBooks;
 
     public static void menu() {
         do {
             int functionChoice = functionChoice();
             switch (functionChoice) {
                 case 1:
-                    createNewReader();
+                    CreatNewReader();
                     break;
                 case 2:
-                    createNewBook();
+                    CreatNewBook();
                     break;
                 case 3:
                     borrowBook();
@@ -35,14 +37,14 @@ public class MainMenu {
         } while (true);
     }
 
-    private static int functionChoice() {
-        System.out.println("---------- PHẦN MỀM QUẢN LÝ THƯ VIỆN ---------");
-        System.out.println("1. Nhập đầu sách mới.");
-        System.out.println("2. Nhập danh sách bạn đọc.");
-        System.out.println("3. Cho mượn sách");
-        System.out.println("4. Sắp xếp danh sách mượn sách.");
-        System.out.println("5. Tìm kiếm danh sách mượn sách. ");
-        System.out.println("6. Thoát.");
+    public static int functionChoice() {
+        System.out.println("--------Phần mềm quản lý mượn sách thư viện-----------");
+        System.out.println("1.Nhập danh sách bạn đọc");
+        System.out.println("2.Nhập danh sách đầu sách mới");
+        System.out.println("3.Quản lý mượn sách");
+        System.out.println("4.Sắp xếp danh sách");
+        System.out.println("5.Tìm kiếm và hiển thị danh sách mượn sách theo tên bạn đọc");
+        System.out.println("6.Thoát");
         System.out.print("Xin mời chọn chức năng: ");
         int functionChoice;
         do {
@@ -50,16 +52,16 @@ public class MainMenu {
             if (functionChoice >= 1 && functionChoice <= 6) {
                 break;
             }
-            System.out.print("Chức năng chọn không hợp lệ, vui lòng chọn lại: ");
+            System.out.println("Nhập không hợp lệ! Vui lòng nhập lại");
         } while (true);
         return functionChoice;
     }
 
     private static boolean isValidBookAndReader() {
-        return books != null && readers != null && books.length > 0 && readers.length > 0;
+        return books != null && readers != null && books.size() > 0 && readers.size() > 0;
     }
 
-    public static void createNewReader() {
+    public static void CreatNewReader() {
         System.out.println("Nhập số lượng bạn đọc: ");
         int allReader = 0;
         boolean checked = true;
@@ -74,74 +76,48 @@ public class MainMenu {
                 checked = false;
             }
         } while (!checked);
-//        if (allReader <= 0) {
-//            // xử lý không được nhập số âm
-//            // nhập chữ thì sao????
-//        }
-        //done
-        readers = new Reader[allReader];
-        for (int i = 0; i < readers.length; i++) {
-            Reader reaDer = new Reader();
-            reaDer.nhapTTBD();
-            readers[i] = reaDer;
+        for (int i = 0; i < allReader; i++) {
+            Reader reader = new Reader();
+            reader.nhapTTBD();
+            readers.add(reader);
         }
-        for (int i = 0; i < readers.length; i++) {
-            System.out.println(readers[i]);
+//        System.out.println(readers.size());
+        for (int i = 0; i < readers.size(); i++) {
+            System.out.println(readers.get(i));
         }
     }
 
-    public static void createNewBook() {
-        System.out.println("Nhập số lượng sách: ");
+    public static void CreatNewBook() {
+        System.out.println("Nhập số lượng đầu sách");
         int allBook = 0;
-        boolean checked = true;
+        boolean check = true;
         do {
             try {
                 allBook = new Scanner(System.in).nextInt();
-                checked = true;
+                check = true;
             } catch (Exception e) {
+                e.printStackTrace();
             }
             if (allBook <= 0) {
-                System.out.print("Tổng số sách lớn hơn 0 và không có chữ! Nhập lại: ");
-                checked = false;
+                System.out.println("Tổng số đầu sách lớn hơn 0 và không có chữ! nhập lại:");
+                check = false;
             }
-        } while (!checked);
-//        if (allBook <= 0) {
-//            // xử lý không được nhập số âm
-//            // nhập chữ thì sao????
-//        }
-        //done
-        books = new Book[allBook];
-        for (int i = 0; i < books.length; i++) {
+        } while (!check);
+        for (int i = 0; i < allBook; i++) {
             Book book = new Book();
             book.nhapTTS();
-            books[i] = book;
+            books.add(book);
         }
-        for (int i = 0; i < books.length; i++) {
-            System.out.println(books[i]);
+        for (int i = 0; i < books.size(); i++) {
+            System.out.println(books.get(i));
         }
     }
 
-    /**
-     * 1. Nhập số lượng người đọc muốn mượn sách (n thằng)
-     * 2. For từ 0 đến n-1 (tưởng tượng n bạn đọc đang xếp hàng, và mình đang xử lý từng bạn đọc 1 lần)
-     * *trong for là bạn đọc thứ i ==> cho bạn đọc thứ i mượn sách*
-     * 2.1 Nhập số lượng đầu sách bạn đọc thứ i muốn mượn (gọi là k), nếu nhập quá 5 thì bắt nhập lại
-     * 2.2 for từ 0 tới k-1 (hỏi xem nó muốn mượn những quyển gì)
-     * 2.2.1 nhập id của đầu sách thứ j
-     * 2.2.2 tìm kiếm trong "AllBook" xem có id mà nó vừa nhập không???
-     * ==> không ==> in ra: id sách không tồn tại, yêu cầu nhập lại
-     * 2.2.3 hỏi xem muốn mượn bao nhiêu quyển của đầu sách thứ j này
-     * > 3 ==> hỏi lại
-     * <= 3 --> ok, cho mượn (tức là set vào mảng book[] mà nó muốn mượn)
-     * -----đủ k quyển thì thoát khỏi for
-     * ------đủ n người mượn, thì dừng chức năng.
-     */
     public static void borrowBook() {
         if (!isValidBookAndReader()) {
             System.out.println("Bạn cần nhập danh sách bạn đọc và đầu sách trước khi cho mượn!");
             return;
         }
-
         System.out.println("Nhập số lượng bạn đọc muốn mượn sách: ");
         int n = 0;
         boolean checked = true;
@@ -151,7 +127,7 @@ public class MainMenu {
                 checked = true;
             } catch (Exception e) {
             }
-            if (n <= 0 || n > readers.length) {
+            if (n <= 0 || n > readers.size()) {
                 System.out.println("Nhập lại! số lượng bạn đọc muốn mượn sách phải lớn hơn 0,nhỏ hơn tổng sách và không có chữ: ");
                 checked = false;
             }
@@ -160,10 +136,8 @@ public class MainMenu {
             //done
         } while (!checked);
 
-        borrowBooks = new BorrowBook[n];
-
         for (int i = 0; i < n; i++) {
-            System.out.println("Nhập số lượng đầu sách mà bạn " + readers[i].getName() + " muốn mượn: ");
+            System.out.println("Nhập số lượng đầu sách mà bạn " + readers.get(i).getName() + " muốn mượn: ");
             int k = 0;
             do {
                 try {
@@ -173,7 +147,7 @@ public class MainMenu {
                     System.out.print("Số lượng phải là một số không phải kí tự khác, vui lòng nhập lại: ");// <-------------------------------------------------------
                     continue;
                 }
-                if (k <= 0 || k > 5 || k > books.length) {
+                if (k <= 0 || k > 5 || k > books.size()) {
                     System.out.println("nhập lại! số lượng đầu sách lớn hơn 0, nhỏ hơn 5 và tổng sách, không có chữ:  ");
                     checked = false;
                 }
@@ -181,11 +155,10 @@ public class MainMenu {
                 // nhập chữ thì sao????
                 //done
             } while (!checked);
-
-            Book[] bookList = new Book[k];
-            int[] quantityList = new int[k];
+            ArrayList<Book> bookList = new ArrayList<>();
+            ArrayList<Integer> quantityList = new ArrayList<>();
             for (int j = 0; j <= k - 1; j++) {
-                System.out.println("Nhập id của đầu sách thứ " + (j + 1) + " mà bạn " + readers[i].getName() + " muốn mượn: ");
+                System.out.println("Nhập id của đầu sách thứ " + (j + 1) + " mà bạn " + readers.get(i).getName() + " muốn mượn: ");
                 int tempId;
                 do {
                     tempId = new Scanner(System.in).nextInt();
@@ -208,43 +181,36 @@ public class MainMenu {
                             // nhập chữ thì sao????
                             //done
                         } while (!checked);
-                        bookList[j] = book;
-                        quantityList[j] = m;
+                        bookList.add(book);
+                        quantityList.add(m);
                         break;
                     }
                     System.out.print("Không có sách nào trong thư viện có ID vừa nhập, vui lòng nhập lại: ");
                 } while (true);
             }
 
-            BorrowBook borrowBook = new BorrowBook(readers[i], bookList, quantityList);
-            borrowBooks[i] = borrowBook;
+            BorrowBook borrowBook = new BorrowBook(readers.get(i), bookList, quantityList);
+            borrowBooks.add(borrowBook);
         }
-
         // in ra kết quả
         System.out.println("Danh sách bảng mượn sách của các bạn đọc hiện tại là:");
-        for (int i = 0; i < borrowBooks.length; i++) {
-            System.out.println(borrowBooks[i]);
+        for (int i = 0; i < borrowBooks.size(); i++) {
+            System.out.println(borrowBooks.get(i));
         }
-
-        // dùng cách này cũng được
-//        for (BorrowBook borrowBook: borrowBooks) {
-//            System.out.println(borrowBook);
-//        }
-
     }
 
     private static Book searchBook(int id) {
-        for (int i = 0; i < books.length; i++) {
-            if (books[i].getID() == id) {
-                return books[i];
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getID() == id) {
+                return books.get(i);
             }
         }
         return null;
     }
 
     private static void sortBorrowList() {
-        if (borrowBooks == null || borrowBooks.length == 0) {
-            System.out.println("Bạn cần nhập danh sách bạn đọc và đầu sách trước khi cho mượn!");
+        if (borrowBooks == null || borrowBooks.size() == 0) {
+            System.out.println("Bạn cần nhập danh sách cho mượn trước khi sắp xếp!");
             return;
         }
         do {
@@ -274,71 +240,61 @@ public class MainMenu {
         } while (true);
     }
 
-    // sử dụng thuật toán sắp xếp nổi bọt
     private static void sortBorrowListByReaderName() {
-        if (borrowBooks == null || borrowBooks.length == 0) {
-            System.out.println("Bạn cần nhập danh sách cho mượn trước khi sắp xếp!");
-            return;
-        }
-        for (int i = 0; i < borrowBooks.length; i++) {
-            for (int j = i+1; j < borrowBooks.length; j++) {
-                if (borrowBooks[i].getReader().getName().compareTo(borrowBooks[j].getReader().getName()) > 0) {
-                    BorrowBook temp = borrowBooks[i];
-                    borrowBooks[i] = borrowBooks[j];
-                    borrowBooks[j] = temp;
+        for (int i = 0; i < borrowBooks.size(); i++) {
+            for (int j = i+1; j < borrowBooks.size(); j++) {
+                if (borrowBooks.get(i).getReader().getName().compareTo(borrowBooks.get(j).getReader().getName()) > 0) {
+                    BorrowBook temp = borrowBooks.get(i);
+                    borrowBooks.set(i, borrowBooks.get(j));
+                    borrowBooks.set(j, temp);
                 }
             }
         }
-        for (int i=0; i< borrowBooks.length;i++){
-            System.out.println(borrowBooks[i]);
+        for (int i=0; i< borrowBooks.size();i++){
+            System.out.println(borrowBooks.get(i));
         }
     }
 
     private static void sortBorrowListByBookAmount() {
-        if (borrowBooks == null || borrowBooks.length == 0) {
-            System.out.println("Bạn cần nhập danh sách cho mượn trước khi sắp xếp!");
-            return;
-        }
-
         // tính tổng số lượng sách từng thằng mượn
-        for (int i = 0; i < borrowBooks.length; i++) {
-            BorrowBook borrowBook = borrowBooks[i];
-            Book[] books = borrowBook.getBooks();
-            int[] quantity = borrowBook.getQuantity();
+        for (int i = 0; i < borrowBooks.size(); i++) {
+            BorrowBook borrowBook = borrowBooks.get(i);
+            books = borrowBook.getBooks();
+            ArrayList<Integer>quantity = borrowBook.getQuantity();
             int tempTotal = 0;
-            for (int j = 0; j < books.length; j++) {
-                tempTotal += quantity[j];
+            for (int j = 0; j < books.size(); j++) {
+                tempTotal += quantity.get(j);
             }
             borrowBook.setTotalBook(tempTotal);
         }
 
         // sắp xếp nổi bọt
-        for (int i = 0; i < borrowBooks.length; i++) {
-            for (int j = i + 1; j < borrowBooks.length; j++) {
-                if (borrowBooks[i].getTotalBook() < borrowBooks[j].getTotalBook()) {
-                    BorrowBook temp = borrowBooks[i];
-                    borrowBooks[i] = borrowBooks[j];
-                    borrowBooks[j] = temp;
+        for (int i = 0; i < borrowBooks.size(); i++) {
+            for (int j = i + 1; j < borrowBooks.size(); j++) {
+                if (borrowBooks.get(i).getTotalBook() < borrowBooks.get(j).getTotalBook()) {
+                    BorrowBook temp = borrowBooks.get(i);
+                    borrowBooks.set(i, borrowBooks.get(j));
+                    borrowBooks.set(j, temp);
                 }
             }
         }
-        for (int i=0; i< borrowBooks.length; i++){
-            System.out.println(borrowBooks[i]);
+        for (int i=0; i< borrowBooks.size(); i++){
+            System.out.println(borrowBooks.get(i));
         }
     }
 
     private static void findBorrowListByName() {
-        if (borrowBooks == null || borrowBooks.length == 0) {
-            System.out.println("Bạn cần nhập danh sách bạn đọc và đầu sách trước khi cho mượn!");
+        if (borrowBooks == null || borrowBooks.size() == 0) {
+            System.out.println("Bạn cần nhập danh sách mượn sách trước khi tìm kiếm!");
             return;
         }
 
         System.out.print("Nhập tên bạn đọc muốn tìm kiếm: ");
         String tempName = new Scanner(System.in).nextLine();
         boolean isFound = false;
-        for (int i = 0; i < borrowBooks.length; i++) {
-            if (borrowBooks[i].getReader().getName().equals(tempName)) {
-                System.out.println(borrowBooks[i].getReader());
+        for (int i = 0; i < borrowBooks.size(); i++) {
+            if (borrowBooks.get(i).getReader().getName().equals(tempName)) {
+                System.out.println(borrowBooks.get(i).getReader());
                 isFound = true;
             }
         }
@@ -347,6 +303,4 @@ public class MainMenu {
             System.out.println("Không tìm thấy bạn đọc có tên '" + tempName + "' trong danh sách mượn sách");
         }
     }
-
 }
-

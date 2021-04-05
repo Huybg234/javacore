@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class Book {
-    public static String SCIENCE = "Khoa học tự nhiên";
-    public static String LITERARY_ART = "Văn học nghệ thuật";
-    public static String TELECOMMUNICATION = "Điện tử viễn thông";
-    public static String INFORMATION_TECHNOLOGY = "Công nghệ thông tin";
+    private final static String SCIENCE = "Khoa học tự nhiên";
+    private final static String LITERARY_ART = "Văn học nghệ thuật";
+    private final static String TELECOMMUNICATION = "Điện tử viễn thông";
+    private final static String INFORMATION_TECHNOLOGY = "Công nghệ thông tin";
 
     private static int AUTO_IDBOOK = 10000;
 
@@ -29,40 +29,16 @@ public class Book {
         return SCIENCE;
     }
 
-    public static void setSCIENCE(String SCIENCE) {
-        Book.SCIENCE = SCIENCE;
-    }
-
     public static String getLiteraryArt() {
         return LITERARY_ART;
-    }
-
-    public static void setLiteraryArt(String literaryArt) {
-        LITERARY_ART = literaryArt;
     }
 
     public static String getTELECOMMUNICATION() {
         return TELECOMMUNICATION;
     }
 
-    public static void setTELECOMMUNICATION(String TELECOMMUNICATION) {
-        Book.TELECOMMUNICATION = TELECOMMUNICATION;
-    }
-
     public static String getInformationTechnology() {
         return INFORMATION_TECHNOLOGY;
-    }
-
-    public static void setInformationTechnology(String informationTechnology) {
-        INFORMATION_TECHNOLOGY = informationTechnology;
-    }
-
-    public static int getAutoIdbook() {
-        return AUTO_IDBOOK;
-    }
-
-    public static void setAutoIdbook(int autoIdbook) {
-        AUTO_IDBOOK = autoIdbook;
     }
 
     public int getID() {

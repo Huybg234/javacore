@@ -1,3 +1,5 @@
+package codeByArrayList;
+
 import java.util.Scanner;
 
 public class Reader {
@@ -115,14 +117,17 @@ public class Reader {
             switch (choice) {
                 case 1:
                     this.setReaderType(Reader.STUDENT);
+                    System.out.println("Sinh viên");
                     isValue = true;
                     break;
                 case 2:
                     this.setReaderType(Reader.HIGHTSTUDENT);
+                    System.out.println("Sinh viên cao học");
                     isValue = true;
                     break;
                 case 3:
                     this.setReaderType(Reader.TEACHER);
+                    System.out.println("Giáo viên");
                     isValue = true;
                     break;
                 default:
