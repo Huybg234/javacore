@@ -90,7 +90,7 @@ public class Book {
         Auto_BookID = auto_BookID;
     }
 
-    public void nhapTTS(){
+    public void nhapTTS() {
         this.setID(Book.Auto_BookID);
 
         System.out.println("Nhập tên sách: ");
@@ -109,11 +109,11 @@ public class Book {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (this.Year <=0 || this.Year>2021){
+            if (this.Year <= 0 || this.Year > 2021) {
                 System.out.println("Năm xuất bản phải lớn hơn 0 và nhỏ hơn 2021! Nhập lại: ");
                 checkYear = false;
             }
-        }while (!checkYear);
+        } while (!checkYear);
 
         System.out.println("Nhập loại sách:");
         System.out.println("1.Khoa học tự nhiên");
@@ -129,7 +129,7 @@ public class Book {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            switch (choice){
+            switch (choice) {
                 case 1:
                     this.setMajor(Book.NATURAL_SCIENCES);
                     check = true;

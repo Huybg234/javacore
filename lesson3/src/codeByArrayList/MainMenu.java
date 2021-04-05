@@ -126,14 +126,12 @@ public class MainMenu {
                 n = new Scanner(System.in).nextInt();
                 checked = true;
             } catch (Exception e) {
+                // không làm gì??? // <-------------------------------------------------------
             }
             if (n <= 0 || n > readers.size()) {
                 System.out.println("Nhập lại! số lượng bạn đọc muốn mượn sách phải lớn hơn 0,nhỏ hơn tổng sách và không có chữ: ");
                 checked = false;
             }
-            // check nhập số âm thì sao?????
-            // nhập chữ thì sao????
-            //done
         } while (!checked);
 
         for (int i = 0; i < n; i++) {
@@ -151,10 +149,8 @@ public class MainMenu {
                     System.out.println("nhập lại! số lượng đầu sách lớn hơn 0, nhỏ hơn 5 và tổng sách, không có chữ:  ");
                     checked = false;
                 }
-                // số âm thì sao????
-                // nhập chữ thì sao????
-                //done
             } while (!checked);
+
             ArrayList<Book> bookList = new ArrayList<>();
             ArrayList<Integer> quantityList = new ArrayList<>();
             for (int j = 0; j <= k - 1; j++) {
@@ -171,6 +167,7 @@ public class MainMenu {
                                 m = new Scanner(System.in).nextInt();
                                 checked = true;
                             } catch (Exception e) {
+                                // do nothing????
                             }
                             if (m > 3 || m <= 0) {
                                 System.out.println("Số lượng sách được cho phép mượn của một đầu sách lớn hơn 0, " +
@@ -242,7 +239,7 @@ public class MainMenu {
 
     private static void sortBorrowListByReaderName() {
         for (int i = 0; i < borrowBooks.size(); i++) {
-            for (int j = i+1; j < borrowBooks.size(); j++) {
+            for (int j = i + 1; j < borrowBooks.size(); j++) {
                 if (borrowBooks.get(i).getReader().getName().compareTo(borrowBooks.get(j).getReader().getName()) > 0) {
                     BorrowBook temp = borrowBooks.get(i);
                     borrowBooks.set(i, borrowBooks.get(j));
@@ -250,7 +247,7 @@ public class MainMenu {
                 }
             }
         }
-        for (int i=0; i< borrowBooks.size();i++){
+        for (int i = 0; i < borrowBooks.size(); i++) {
             System.out.println(borrowBooks.get(i));
         }
     }
@@ -260,7 +257,7 @@ public class MainMenu {
         for (int i = 0; i < borrowBooks.size(); i++) {
             BorrowBook borrowBook = borrowBooks.get(i);
             books = borrowBook.getBooks();
-            ArrayList<Integer>quantity = borrowBook.getQuantity();
+            ArrayList<Integer> quantity = borrowBook.getQuantity();
             int tempTotal = 0;
             for (int j = 0; j < books.size(); j++) {
                 tempTotal += quantity.get(j);
@@ -278,7 +275,7 @@ public class MainMenu {
                 }
             }
         }
-        for (int i=0; i< borrowBooks.size(); i++){
+        for (int i = 0; i < borrowBooks.size(); i++) {
             System.out.println(borrowBooks.get(i));
         }
     }
