@@ -1,8 +1,11 @@
-package demoList;
+package demo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class DemoArrayList {
+
     public static void main(String[] args) {
         ArrayList<Integer> list = new java.util.ArrayList<>();
         ArrayList<Integer> list2 = new ArrayList<>();
@@ -112,13 +115,11 @@ public class DemoArrayList {
         System.out.println("------------------------------");
         System.out.println(student1.equals(student2));
         System.out.println("------------------------------");
-        for (int i = 0; i < listSV.size(); i++) {
+        for (Student student : listSV) {
 //            Object getSV = listSV.get(i);
 //            System.out.println(getSV);
-            System.out.println(listSV.get(i));
+            System.out.println(student);
         }
-        ArrayList<Integer>Clone = new ArrayList<>();
-        Clone = (ArrayList<Integer>) list2.clone();
-        System.out.println(Clone);
+        System.out.println(list2.clone());
     }
 }

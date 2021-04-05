@@ -1,21 +1,21 @@
-package demoStack;
+package demo;
 
 import java.util.Stack;
 
 /*
-first in last out
+first in last out : FILO
  */
 public class DemoStack {
     public static void main(String[] args) {
         Stack<Student> old = new Stack<>();
-        Student student1 = new Student("Kim","bg",18);
-        Student student2 = new Student("Mộc","hn",19);
+        Student student1 = new Student("Kim", "bg", 18);
+        Student student2 = new Student("Mộc", "hn", 19);
         old.add(student1);
         old.add(student2);
         System.out.println(old);
 
         Stack<Student> young = new Stack<>();
-        Student student3 = new Student("Thủy","cm",20);
+        Student student3 = new Student("Thủy", "cm", 20);
         young.add(student3);
         System.out.println(young);
 
