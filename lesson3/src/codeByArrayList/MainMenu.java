@@ -1,12 +1,14 @@
 package codeByArrayList;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class MainMenu {
-    private static ArrayList<Reader> readers = new ArrayList<>();
-    private static ArrayList<Book> books = new ArrayList<>();
-    private static ArrayList<BorrowBook> borrowBooks = new ArrayList<>();
+    private static List<Reader> readers = new ArrayList<>();
+    private static List<Book> books = new ArrayList<>();
+    private static List<BorrowBook> borrowBooks = new ArrayList<>();
 
     public static void main(String[] args) {
         menu();
@@ -151,8 +153,9 @@ public class MainMenu {
                 }
             } while (!checked);
 
-            ArrayList<Book> bookList = new ArrayList<>();
-            ArrayList<Integer> quantityList = new ArrayList<>();
+            ArrayList<BorrowBookCard> bookList = new ArrayList<>();
+//            ArrayList<Book> bookList = new ArrayList<>();
+//            ArrayList<Integer> quantityList = new ArrayList<>();
             for (int j = 0; j <= k - 1; j++) {
                 System.out.println("Nhập id của đầu sách thứ " + (j + 1) + " mà bạn " + readers.get(i).getName() + " muốn mượn: ");
                 int tempId;
@@ -178,15 +181,16 @@ public class MainMenu {
                             // nhập chữ thì sao????
                             //done
                         } while (!checked);
-                        bookList.add(book);
-                        quantityList.add(m);
+                        bookList.add(new BorrowBookCard(book, m));
+//                        bookList.add(book);
+//                        quantityList.add(m);
                         break;
                     }
                     System.out.print("Không có sách nào trong thư viện có ID vừa nhập, vui lòng nhập lại: ");
                 } while (true);
             }
 
-            BorrowBook borrowBook = new BorrowBook(readers.get(i), bookList, quantityList);
+            BorrowBook borrowBook = new BorrowBook(readers.get(i), bookList);
             borrowBooks.add(borrowBook);
         }
         // in ra kết quả
@@ -254,12 +258,19 @@ public class MainMenu {
 
     private static void sortBorrowListByBookAmount() {
         // tính tổng số lượng sách từng thằng mượn
-        for (int i = 0; i < borrowBooks.size(); i++) {
-            BorrowBook borrowBook = borrowBooks.get(i);
-            books = borrowBook.getBooks();
-            ArrayList<Integer> quantity = borrowBook.getQuantity();
+        for (BorrowBook borrowBook : borrowBooks) {
+            List<BorrowBookCard> books = borrowBook.getBooks();
+            for (BorrowBookCard book : books) {
+                MainMenu.books.add(book.getBook());
+            }
+            List<Integer> quantity = new ArrayList<>();
+            for (BorrowBookCard book : books) {
+                quantity.add(book.getQuantity());
+            }
+//            MainMenu.books = books.stream().map(BorrowBookCard::getBook).collect(Collectors.toList());
+//            List<Integer> quantity = books.stream().map(BorrowBookCard::getQuantity).collect(Collectors.toList());
             int tempTotal = 0;
-            for (int j = 0; j < books.size(); j++) {
+            for (int j = 0; j < MainMenu.books.size(); j++) {
                 tempTotal += quantity.get(j);
             }
             borrowBook.setTotalBook(tempTotal);
