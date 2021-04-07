@@ -3,6 +3,7 @@ package demo;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class DemoArrayList {
 
@@ -120,6 +121,17 @@ public class DemoArrayList {
 //            System.out.println(getSV);
             System.out.println(student);
         }
+
+        listSV.forEach(new Consumer<Student>() {
+            @Override
+            public void accept(Student student) {
+                System.out.println(student);
+            }
+        });
+
+        listSV.forEach(student -> System.out.println(student));
+//        listSV.forEach(System.out::println);
+
         System.out.println(list2.clone());
     }
 }

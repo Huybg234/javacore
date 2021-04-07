@@ -1,9 +1,12 @@
 package demoSort;
 
+import java.util.Date;
+
 public class Student implements Comparable<Student> {
     private String name;
     private String address;
     private int age;
+    private Date birthday;
 
     public Student() {
     }
@@ -38,6 +41,14 @@ public class Student implements Comparable<Student> {
         this.age = age;
     }
 
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -47,9 +58,15 @@ public class Student implements Comparable<Student> {
                 '}';
     }
 
+    @Override
     public int compareTo(Student student) {
         return this.getName().compareTo(student.getName());
 //        return this.getAge() - student.getAge();
     }
+
+    public void showInfo() {
+        System.out.println(this.toString());
+    }
+
 }
 
