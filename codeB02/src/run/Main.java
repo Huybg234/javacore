@@ -88,8 +88,9 @@ public class Main implements Serializable {
             Staff staff = new Staff();
             staff.inputStaffInformation();
             staffList.add(staff);
-            staff.ghiFile();
+//            staff.ghiFile();
         }
+        // ghi cả list
     }
 
     public static void OutStaffList() {
@@ -120,8 +121,9 @@ public class Main implements Serializable {
             Room room = new Room();
             room.inputRoomInformation();
             roomList.add(room);
-            room.ghiFile();
+//            room.ghiFile();
         }
+        // ghi cả list
     }
 
     public static void OutputRoomList() {

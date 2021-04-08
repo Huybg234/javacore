@@ -47,6 +47,7 @@ public class Staff extends Person implements Serializable {
         this.setId(Staff.AUTO_ID);
 
         person.InputPerson();
+//        super.InputPerson();
         System.out.println("Nhập bậc lương: ");
         do {
             this.salary = new Scanner(System.in).nextInt();

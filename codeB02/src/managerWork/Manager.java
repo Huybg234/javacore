@@ -11,7 +11,9 @@ import java.util.List;
 
 public class Manager {
     private Staff staff;
-    List<ManagerPair> managerDS = new ArrayList<>();
+    private Room room;
+    private int day;
+//    List<ManagerPair> managerDS = new ArrayList<>();
 
     public Manager() {
     }
