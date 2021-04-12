@@ -20,6 +20,7 @@ public class Main {
     private static List<Double> income = new ArrayList<>();
 
     public static void main(String[] args) {
+        // đọc dữ liệu từ file ra và khởi tạo data cho các list
         menu();
     }
 
@@ -88,7 +89,8 @@ public class Main {
                 allStaff = new Scanner(System.in).nextInt();
                 checkStaff = true;
             } catch (InputMismatchException e) {
-                System.out.println("Không được có ký tự khác ngoài số!");
+                System.out.println("Không được có ký tự khác ngoài số! Nhập lại: ");
+                continue;
             }
             if (allStaff <= 0) {
                 System.out.print("Số lượng nhân viên mới phải lớn hơn 0! Nhập lại: ");
@@ -105,7 +107,7 @@ public class Main {
     }
 
     public static void outputNewStaff() {
-        staffList.forEach(staff -> System.out.println(staff.toString()));
+        staffList.forEach(staff -> System.out.println(staff));
     }
 
     public static void inputDepartment() {
@@ -117,7 +119,8 @@ public class Main {
                 affDepartment = new Scanner(System.in).nextInt();
                 checkDepartment = true;
             } catch (InputMismatchException e) {
-                System.out.println("Không được nhập ký tự khác ngoài số!");
+                System.out.println("Không được nhập ký tự khác ngoài số! Nhập lại: ");
+                continue;
             }
             if (affDepartment <= 0) {
                 System.out.print("Số lượng phòng ban phải lớn hơn 0! Nhập Lại: ");
@@ -134,11 +137,11 @@ public class Main {
     }
 
     public static void outputDepartment() {
-        departmentList.forEach(department -> System.out.println(department.toString()));
+        departmentList.forEach(department -> System.out.println(department));
     }
 
     private static boolean isValidStaffAndDepartment() {
-        return staffList != null & departmentList != null & staffList.size() > 0 & departmentList.size() > 0;
+        return staffList != null & departmentList != null & !staffList.isEmpty() & !departmentList.isEmpty();
     }
 
     public static void timeKeeping() {
@@ -164,9 +167,10 @@ public class Main {
                             checkDay = true;
                         } catch (Exception e) {
                             System.out.print("Nhập lỗi! Nhập lại: ");
+                            continue;
                         }
                         if (workingDay <= 0 || workingDay > 22) {
-                            System.out.print("Số ngày làm việc trong khoảng từ 0 đến 22! NHập lại: ");
+                            System.out.print("Số ngày làm việc trong khoảng từ 0 đến 22! Nhập lại: ");
                             checkDay = false;
                         }
                     } while (!checkDay);
@@ -249,12 +253,7 @@ public class Main {
                 }
             }
         }
-        timeKeeperList.forEach(new Consumer<TimeKeeper>() {
-            @Override
-            public void accept(TimeKeeper timeKeeper) {
-                System.out.println(timeKeeper.toString());
-            }
-        });
+        timeKeeperList.forEach(timeKeeper -> System.out.println(timeKeeper.toString()));
     }
 
     public static void sortTimeKeeperListByDepartmentName() {
@@ -267,12 +266,7 @@ public class Main {
                 }
             }
         }
-        timeKeeperList.forEach(new Consumer<TimeKeeper>() {
-            @Override
-            public void accept(TimeKeeper timeKeeper) {
-                System.out.println(timeKeeper.toString());
-            }
-        });
+        timeKeeperList.forEach(timeKeeper -> System.out.println(timeKeeper.toString()));
     }
 
     public static void staffIncome() {

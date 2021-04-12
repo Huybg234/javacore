@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/codeFix/codeFix.iml" filepath="$PROJECT_DIR$/codeFix/codeFix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/human-management/human-management.iml" filepath="$PROJECT_DIR$/human-management/human-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javacore.iml" filepath="$PROJECT_DIR$/javacore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson3/lesson3.iml" filepath="$PROJECT_DIR$/lesson3/lesson3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson4/lesson4.iml" filepath="$PROJECT_DIR$/lesson4/lesson4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lesson5/lesson5.iml" filepath="$PROJECT_DIR$/lesson5/lesson5.iml" />
+    </modules>
+  </component>
+</project>

@@ -8,18 +8,24 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileUntil<T extends Serializable> {
+
     public static <T> void writeDataToFile(List<T> data, String filename) {
         if (DataUntil.isEmptyCollection(data)) {
             return;
         }
 
         do {
-            if (StringUntil.isEmptyString(filename)) {
-                System.out.println("Tên file không được để trống! Nhập lại:");
-                filename = new Scanner(System.in).nextLine();
-            } else {
+//            if (StringUntil.isEmptyString(filename)) {
+//                System.out.println("Tên file không được để trống! Nhập lại:");
+//                filename = new Scanner(System.in).nextLine();
+//            } else {
+//                break;
+//            }
+            if (!StringUntil.isEmptyString(filename)) {
                 break;
             }
+            System.out.println("Tên file không được để trống! Nhập lại:");
+            filename = new Scanner(System.in).nextLine();
         } while (true);
 
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename))) {
@@ -28,4 +34,5 @@ public class FileUntil<T extends Serializable> {
             e.printStackTrace();
         }
     }
+
 }

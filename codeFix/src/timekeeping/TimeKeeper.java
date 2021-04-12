@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class TimeKeeper implements Serializable {
     private Staff staff;
     private Department department;
-    private int TimeWork;
+    private int timeWork;
 
     public TimeKeeper() {
     }
@@ -16,7 +16,7 @@ public class TimeKeeper implements Serializable {
     public TimeKeeper(Staff staff, Department department, int timeWork) {
         this.staff = staff;
         this.department = department;
-        TimeWork = timeWork;
+        this.timeWork = timeWork;
     }
 
     public Staff getStaff() {
@@ -36,11 +36,11 @@ public class TimeKeeper implements Serializable {
     }
 
     public int getTimeWork() {
-        return TimeWork;
+        return timeWork;
     }
 
     public void setTimeWork(int timeWork) {
-        TimeWork = timeWork;
+        this.timeWork = timeWork;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class TimeKeeper implements Serializable {
         return "TimeKeeping{" +
                 "staff=" + staff +
                 ", department=" + department +
-                ", TimeWork=" + TimeWork +
+                ", TimeWork=" + timeWork +
                 '}';
     }
 }
