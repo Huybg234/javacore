@@ -1,20 +1,19 @@
-package companyPerson;
+package entity;
 
-import java.io.Serializable;
 import java.util.Scanner;
 
-public class Person implements Serializable {
+public class Person {
     private String name;
     private String address;
-    private String phonenumber;
+    private String phoneNumber;
 
     public Person() {
     }
 
-    public Person(String name, String address, String phonenumber) {
+    public Person(String name, String address, String phoneNumber) {
         this.name = name;
         this.address = address;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
@@ -33,21 +32,21 @@ public class Person implements Serializable {
         this.address = address;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public void InputPerson() {
+    public void inputPersonInfo() {
         System.out.println("Nhập tên: ");
         this.name = new Scanner(System.in).nextLine();
         System.out.println("Nhập địa chỉ: ");
         this.address = new Scanner(System.in).nextLine();
         System.out.println("Nhập số điện thoại: ");
-        this.phonenumber = new Scanner(System.in).nextLine();
+        this.phoneNumber = new Scanner(System.in).nextLine();
     }
 
     @Override
@@ -55,7 +54,7 @@ public class Person implements Serializable {
         return "Person{" +
                 "name='" + name + '\'' +
                 ", address='" + address + '\'' +
-                ", phonenumber='" + phonenumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
     }
 }
