@@ -1,5 +1,7 @@
 package test;
 
+import java.util.StringTokenizer;
+
 public class StringInJava {
 
     public static void main(String[] args) {
@@ -14,5 +16,15 @@ public class StringInJava {
         StringBuffer s1 = new StringBuffer("Huy");
         s1.append("Nguyễn").append("Quang");
         System.out.println(s1);
+
+        /**
+         * String là immutable
+         */
+
+        StringBuilder stringBuilder = new StringBuilder();
+        /**
+         * Sự khác biệt giữa StringBuilder và StringBuffer là các method của StringBuffer được synchronized --> liên quan tới thread và xung đột tài nguyên
+         */
+
     }
 }
