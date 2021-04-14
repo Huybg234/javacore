@@ -92,7 +92,6 @@ public class Main {
         threadC.start();
     }
     //xử lý deadlock: nhận ra được thời điểm dừng
-    // có 3 cách thường sử dụng: biến i xong vòng for, dùng cờ
     //notify():tất cả các thread đang chờ sẽ được đánh thức bất kỳ 1 cái
     //notifyAll():tất cả các thread đang chờ đều sẽ được đánh thức
 }
