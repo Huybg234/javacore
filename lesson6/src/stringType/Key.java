@@ -1,4 +1,4 @@
-package test;
+package stringType;
 
 import java.io.IOException;
 
